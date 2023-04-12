@@ -1,7 +1,7 @@
 {
   "name": "@logseq/publish-spa",
   "version": "1.0.0",
-  "description": "TODO",
+  "description": "Publish a Logseq graph as a Single Page Application (SPA)",
   "bin": {
     "logseq-publish-spa": "publish_spa.mjs"
   },

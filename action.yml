@@ -80,5 +80,5 @@ runs:
       shell: bash
 
     - name: Export graph to directory
-      run: cd _publish-spa && node publish_spa.mjs _logseq/static ${{ inputs.graph-directory }} ${{ inputs.output-directory }}
+      run: cd _publish-spa && node publish_spa.mjs ${{ inputs.output-directory }} --static-directory _logseq/static --directory ${{ inputs.graph-directory }}
       shell: bash
