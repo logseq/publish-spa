@@ -18,9 +18,4 @@
   logseq.bb-tasks.lint.ns-docstrings/-main
 
   lint:minimize-public-vars
-  logseq.bb-tasks.lint.minimize-public-vars/-main}
-
- #_:tasks/config
- #_{:large-vars
-  ;; For vars with long running html
-  {:metadata-exceptions #{:large-vars/html}}}}
+  logseq.bb-tasks.lint.minimize-public-vars/-main}}
