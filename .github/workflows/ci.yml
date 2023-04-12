@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - name: Set up Clojure
+        uses: DeLaGuardo/setup-clojure@master
+        with:
+          cli: 1.11.1.1237
+          bb: 1.0.168
+
+      - name: Run clj-kondo lint
+        run: clojure -M:clj-kondo --lint src
+
+      - name: Lint for vars that are too large
+        run: bb lint:large-vars
+
+      - name: Lint for undocumented namespaces
+        run: bb lint:ns-docstrings
+
+      - name: Lint to minimize public vars
+        run: bb lint:minimize-public-vars
+
+      - name: Check outdated dependencies
+        uses: liquidz/antq-action@main
+        with:
+          excludes: 'borkdude/carve clojure/brew-install'
+

@@ -1,0 +1,84 @@
+name: 'Logseq Publish SPA'
+description: 'Publishes a Logseq graph as a Single Page Application (SPA)'
+inputs:
+  graph-directory:
+    description: "Graph's root directory"
+    required: true
+    default: '.'
+  output-directory:
+    description: "Directory for published graph"
+    required: true
+    default: 'www'
+  version:
+    description: "Version of Logseq - tag or SHA"
+    required: true
+    default: '0.9.1'
+
+runs:
+  using: "composite"
+  steps:
+    # First, build logseq's static/ and publishing assets
+    - name: Checkout logseq
+      uses: actions/checkout@v3
+      with:
+        repository: logseq/logseq
+        path: _logseq
+        ref: ${{ inputs.version }}
+
+    ## Placed here since node step requires it
+    - name: Checkout action
+      uses: actions/checkout@v3
+      with:
+        repository: logseq/publish-spa
+        path: _publish-spa
+
+    - name: Set up Clojure
+      uses: DeLaGuardo/setup-clojure@master
+      with:
+        cli: 1.11.1.1182
+        bb: 1.2.174
+
+    - name: Set up Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'yarn'
+        cache-dependency-path: _publish-spa/yarn.lock
+
+    - name: Logseq static cache
+      uses: actions/cache@v3
+      id: logseq-static-all
+      with:
+        path: _logseq/static
+        key: ${{ runner.os }}-logseq-static-all-${{ inputs.version }}
+        restore-keys: ${{ runner.os }}-logseq-static-all-${{ inputs.version }}
+
+    - name: Fetch logseq's yarn deps, build static dir and build cljs publishing
+      if: steps.logseq-static-all.outputs.cache-hit != 'true'
+      run: cd _logseq && yarn install --frozen-lockfile && yarn gulp:build && clojure -M:cljs release publishing
+      shell: bash
+
+     # Second, checkout action and run publish script
+    - name: Fetch yarn deps
+      run: cd _publish-spa && yarn install --frozen-lockfile
+      shell: bash
+
+    - name: Nbb cache
+      uses: actions/cache@v3
+      id: nbb-deps
+      with:
+        path: |
+          ~/.m2/repository
+          ~/.gitlibs
+          _publish-spa/.nbb/.cache
+        key: ${{ runner.os }}-nbb-deps-${{ hashFiles('_publish-spa/nbb.edn') }}
+        restore-keys: ${{ runner.os }}-nbb-deps-
+
+    - name: Fetch nbb deps
+      if: steps.nbb-deps.outputs.cache-hit != 'true'
+      run: cd _publish-spa && yarn nbb-logseq -e ':fetching-deps'
+      shell: bash
+
+    - name: Export graph to directory
+      run: cd _publish-spa && node publish_spa.mjs _logseq/static ${{ inputs.graph-directory }} ${{ inputs.output-directory }}
+      shell: bash

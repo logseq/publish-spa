@@ -1,0 +1,26 @@
+{:min-bb-version "1.0.168"
+ :deps
+ {io.github.logseq/bb-tasks
+  #_{:local/root "../bb-tasks"}
+  {:git/sha "0d49051909bfa0c6b414e86606d82b4ea54f382c"}}
+
+ :pods
+ {clj-kondo/clj-kondo {:version "2023.03.17"}}
+
+ :tasks
+ {lint:large-vars
+  logseq.bb-tasks.lint.large-vars/-main
+
+  lint:carve
+  logseq.bb-tasks.lint.carve/-main
+
+  lint:ns-docstrings
+  logseq.bb-tasks.lint.ns-docstrings/-main
+
+  lint:minimize-public-vars
+  logseq.bb-tasks.lint.minimize-public-vars/-main}
+
+ #_:tasks/config
+ #_{:large-vars
+  ;; For vars with long running html
+  {:metadata-exceptions #{:large-vars/html}}}}

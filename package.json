@@ -1,0 +1,24 @@
+{
+  "name": "@logseq/publish-spa",
+  "version": "1.0.0",
+  "description": "TODO",
+  "bin": {
+    "logseq-publish-spa": "publish_spa.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/logseq/publish-spa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/logseq/publish-spa/issues"
+  },
+  "homepage": "https://github.com/logseq/publish-spa#readme",
+  "dependencies": {
+    "@logseq/nbb-logseq": "^1.2.173",
+    "fs-extra": "^9.1.0",
+    "mldoc": "^1.5.1"
+  }
+}
