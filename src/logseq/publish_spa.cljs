@@ -10,7 +10,7 @@
 (defn- get-db [graph-dir]
   (let [{:keys [conn]} (gp-cli/parse-graph graph-dir {:verbose false})] @conn))
 
-(def spec
+(def ^:private spec
   "Options spec"
   {:directory {:desc "Graph directory to export"
                :alias :d
