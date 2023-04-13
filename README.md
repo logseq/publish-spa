@@ -36,9 +36,9 @@ jobs:
 That's it! Your graph will publish on future git pushes by pushing to the `gh-pages` branch.
 
 NOTE: The above example may not have the latest version of this action. See
-CHANGELOG.md for released versions. If you'd prefer to always be on the latest
-version of this action, use `logseq/publish-spa@main ` but be careful as there
-could be breaking changes.
+[CHANGELOG.md](CHANGELOG.md) for released versions. If you'd prefer to always be
+on the latest version of this action, use `logseq/publish-spa@main` but be
+careful as there could be breaking changes.
 
 #### Action Inputs
 
@@ -102,5 +102,6 @@ Logseq database and then generate html for the publishing app.
 See LICENSE.md
 
 ## Additional Links
-* https://github.com/pengx17/logseq-publish - Thanks to @pengx17 on his great work with this. :heart: This is currently the most popular action for publishing Logseq graphs. If you're happy using it, feel free to continue using it. `publish-spa` has more flexibility with versions of Logseq that can be used and may acquire more functionality than it since it hooks into the publishing process at a lower level.
+* https://github.com/pengx17/logseq-publish - Thanks to @pengx17 for his great work with this. :heart: This is currently the most popular action for publishing Logseq graphs. If you're happy using it, feel free to continue using it. `publish-spa` has more flexibility with versions of Logseq that can be used and may acquire more functionality than it since it hooks into the publishing process at a lower level.
 * https://github.com/logseq/graph-validator - Github action that this one is modeled after
+* https://github.com/logseq/docs - Logseq graph that uses this action
