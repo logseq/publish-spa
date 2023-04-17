@@ -73,7 +73,8 @@ action with 0.9.2.
 ### CLI
 
 To use this as a CLI locally, first install
-[babashka](https://github.com/babashka/babashka#installation). Then:
+[babashka](https://github.com/babashka/babashka#installation) and
+[clojure](https://clojure.org/guides/install_clojure). Then:
 
 ```sh
 $ git clone https://github.com/logseq/publish-spa
