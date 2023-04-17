@@ -72,10 +72,6 @@ action with 0.9.2.
 
 ### CLI
 
-Note: This CLI assumes that a user will build a version of logseq's static
-directory before using it. If you haven't done this, see the
-[action.yml](action.yml) clone logseq and [run these commands locally](https://github.com/logseq/publish-spa/blob/1acc2743898210f9c5218d3c33bebbed9106fb32/action.yml#L58).
-
 To use this as a CLI locally, first install
 [babashka](https://github.com/babashka/babashka#installation). Then:
 
@@ -85,7 +81,19 @@ $ cd publish-spa && yarn install
 $ yarn global add $PWD
 ```
 
-Then use it from any logseq graph directory!
+This CLI depends on Logseq being checked out locally in order to build the
+static directory for it. If you haven't built the static directory, you'll need
+to do it once (takes some time):
+
+```sh
+$ git clone https://github.com/logseq/logseq && cd logseq
+# Switch to a stable version
+$ git checkout 0.9.2
+# Install deps and build static directory
+$ yarn install --frozen-lockfile && yarn gulp:build && clojure -M:cljs release publishing
+```
+
+Then use the CLI from any logseq graph directory!
 ```sh
 $ logseq-publish-spa out
 Parsing 306 files...
