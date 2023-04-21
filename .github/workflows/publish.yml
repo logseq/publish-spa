@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Run github action
+      - name: Build graph's SPA
         uses: logseq/publish-spa@main
         with:
           graph-directory: test/publish-test-graph
