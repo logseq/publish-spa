@@ -46,6 +46,7 @@
             (println (str "Usage: logseq-publish-spa OUT-DIR [OPTIONS]\nOptions:\n"
                           (cli/format-opts {:spec spec})))
             (js/process.exit 1))
+        _ (when js/process.env.CI (println "Options:" (pr-str options)))
         [static-dir graph-dir output-path]
         ;; Offset relative paths for CI since it is run in a different dir
         (map #(if js/process.env.CI (node-path/resolve ".." %) %)
