@@ -31,6 +31,14 @@
                   "' does not exist. Please provide a valid directory"))
     (js/process.exit 1)))
 
+(defn- get-theme-mode [user-theme-mode]
+  (let [theme-mode (or user-theme-mode "light")]
+    (if (#{"light" "dark"} theme-mode)
+      theme-mode
+      (do
+        (println "Warning: Skipping :theme-mode since it is invalid. Must be 'light' or 'dark'.")
+        "light"))))
+
 (defn ^:api -main
   [& args]
   (let [options (cli/parse-opts args {:spec spec})
@@ -49,6 +57,7 @@
                        graph-dir
                        output-path
                        {:repo-config repo-config
+                        :ui/theme (get-theme-mode (:theme-mode options))
                         :notification-fn (fn [msg]
                                            (if (= "error" (:type msg))
                                              (do (js/console.error (:payload msg))

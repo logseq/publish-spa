@@ -70,6 +70,10 @@ a git tag (version) or a specific git SHA. Defaults to `0.9.2`.
 Note: A version before 0.9.2 is not supported as Logseq started supporting this
 action with 0.9.2.
 
+##### `theme-mode`
+
+Optional: Theme mode for frontend. Can be "dark" or "light". Defaults to "light".
+
 ### CLI
 
 To use this as a CLI locally, first install

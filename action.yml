@@ -13,6 +13,10 @@ inputs:
     description: "Frontend version of Logseq - git tag or SHA"
     required: true
     default: '0.9.2'
+  theme-mode:
+    description: "Theme mode of frontend. Can be 'dark' or 'light'"
+    required: false
+    default: 'light'
 
 runs:
   using: "composite"
@@ -80,5 +84,5 @@ runs:
       shell: bash
 
     - name: Export graph to directory
-      run: cd _publish-spa && node publish_spa.mjs ${{ inputs.output-directory }} --static-directory _logseq/static --directory ${{ inputs.graph-directory }}
+      run: cd _publish-spa && node publish_spa.mjs ${{ inputs.output-directory }} --static-directory _logseq/static --directory ${{ inputs.graph-directory }} --theme-mode ${{ inputs.theme-mode }}
       shell: bash
