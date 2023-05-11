@@ -10,3 +10,45 @@ body:
         Logseq issues](https://github.com/logseq/logseq/labels/publishing) and
         if none apply, open one on the [Logseq issue
         tracker](https://github.com/logseq/logseq/issues/new?assignees=&labels=&projects=&template=bug_report.yaml).
+  - type: textarea
+    id: problem
+    attributes:
+      label: What Happened?
+      description: |
+        Please provide as much info as possible. Not doing so may result in your bug not being addressed in a timely manner.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduce the Bug
+      description: |
+        Please tell us the steps to reproduce the bug.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: |
+        Please tell us what's the behavior you expect.
+    validations:
+      required: false
+  - type: textarea
+    id: platform
+    attributes:
+      label: Desktop or Mobile Platform Information
+      description: |
+        Would you mind to tell us the system information about your desktop or mobile platform?
+      placeholder: |
+        OS version, Browser or App, Logseq App version
+        example: macOS 12.2, Desktop App v0.5.9
+        example: iPhone 12, iOS8.1, v0.5.9
+        example: Pixel XL, Android 12, v0.5.9
+    validations:
+      required: false
