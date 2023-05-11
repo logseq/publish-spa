@@ -1,0 +1,12 @@
+name: Bug Report
+description: Report a bug with using the publish-spa github action or CLI
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting an issue for this repository. This repository only
+        handles issues related to the github action or CLI behavior.  If you are
+        experiencing an issue with the publishing app itself, please check [existing
+        Logseq issues](https://github.com/logseq/logseq/labels/publishing) and
+        if none apply, open one on the [Logseq issue
+        tracker](https://github.com/logseq/logseq/issues/new?assignees=&labels=&projects=&template=bug_report.yaml).
