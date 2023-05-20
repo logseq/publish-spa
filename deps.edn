@@ -1,6 +1,6 @@
 {:aliases
  {:clj-kondo
-  {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2023.04.14"}}
+  {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2023.05.18"}}
    :main-opts  ["-m" "clj-kondo.main"]}
   :outdated
   {:replace-deps {com.github.liquidz/antq {:mvn/version "RELEASE"}}
