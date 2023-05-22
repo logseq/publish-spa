@@ -7,8 +7,20 @@
             [babashka.cli :as cli]
             [clojure.edn :as edn]))
 
+(defn- build-graph-files
+  "Custom version of fetching a graph's files which ignores _logseq since it's used by the action.
+   This is hardcoded so that CLI and action both ignore _logseq"
+  [dir]
+  (let [config* (#'gp-cli/read-config dir)
+        config (update config* :hidden concat ["_logseq"])]
+    (#'gp-cli/build-graph-files dir config)))
+
 (defn- get-db [graph-dir]
-  (let [{:keys [conn]} (gp-cli/parse-graph graph-dir {:verbose false})] @conn))
+  (let [files (build-graph-files graph-dir)
+        _ (println "Parsing" (count files) "files...")
+        {:keys [conn]} (gp-cli/parse-graph graph-dir {:verbose false
+                                                      :files files})]
+    @conn))
 
 (def ^:private spec
   "Options spec"
@@ -62,7 +74,7 @@
                         :notification-fn (fn [msg]
                                            (if (= "error" (:type msg))
                                              (do (js/console.error (:payload msg))
-                                               (js/process.exit 1))
+                                                 (js/process.exit 1))
                                              (js/console.log (:payload msg))))})))
 
 #js {:main -main}
