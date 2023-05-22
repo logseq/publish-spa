@@ -1,15 +1,15 @@
 {:deps
  {logseq/graph-parser
   {:git/url "https://github.com/logseq/logseq"
-   :git/sha "a7fe7fa19dfe6ffbb16c0ef9ced95ab288e930dc"
+   :git/sha "ae9927b370fc087a854623e471cf901a770a04ce"
    :deps/root "deps/graph-parser"}
   #_{:local/root "../logseq/deps/graph-parser"}
   logseq/publishing
   {:git/url "https://github.com/logseq/logseq"
-   :git/sha "a7fe7fa19dfe6ffbb16c0ef9ced95ab288e930dc"
+   :git/sha "ae9927b370fc087a854623e471cf901a770a04ce"
    :deps/root "deps/publishing"}
   ;; TODO: Remove workaround for error: 'Unable to compare versions for logseq/db'
   logseq/db
   {:git/url "https://github.com/logseq/logseq"
-   :git/sha "a7fe7fa19dfe6ffbb16c0ef9ced95ab288e930dc"
+   :git/sha "ae9927b370fc087a854623e471cf901a770a04ce"
    :deps/root "deps/db"}}}
