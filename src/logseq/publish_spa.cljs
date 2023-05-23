@@ -19,7 +19,7 @@
 (defn- get-db [graph-dir]
   (let [files (build-graph-files graph-dir)
         _ (println "Parsing" (count files) "files...")
-        {:keys [conn]} (gp-cli/parse-graph graph-dir {:verbose true
+        {:keys [conn]} (gp-cli/parse-graph graph-dir {:verbose false
                                                       :files files})]
     @conn))
 
