@@ -7,21 +7,8 @@
             [babashka.cli :as cli]
             [clojure.edn :as edn]))
 
-(defn- build-graph-files
-  "Custom version of fetching a graph's files which ignores _logseq and
-  _publish-spa dirs since they are used by the action. This is hardcoded so
-  that CLI and action ignore the same dirs"
-  [dir]
-  (let [config* (#'gp-cli/read-config dir)
-        config (update config* :hidden concat ["_logseq" "_publish-spa"])]
-    (#'gp-cli/build-graph-files dir config)))
-
 (defn- get-db [graph-dir]
-  (let [files (build-graph-files graph-dir)
-        _ (println "Parsing" (count files) "files...")
-        {:keys [conn]} (gp-cli/parse-graph graph-dir {:verbose false
-                                                      :files files})]
-    @conn))
+  (let [{:keys [conn]} (gp-cli/parse-graph graph-dir {:verbose false})] @conn))
 
 (def ^:private spec
   "Options spec"
