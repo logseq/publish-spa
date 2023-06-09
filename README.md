@@ -33,7 +33,10 @@ jobs:
           folder: www
 ```
 
-That's it! Your graph will publish on future git pushes by pushing to the `gh-pages` branch.
+That's it! Your graph will publish on future git pushes by pushing to the
+`gh-pages` branch. Don't forget to [configure your
+graph](https://docs.logseq.com/#/page/publishing/block/configuration) if you're
+not seeing the pages you expect to see.
 
 NOTE: The above example may not have the latest version of this action. See
 [CHANGELOG.md](CHANGELOG.md) for released versions. If you'd prefer to always be
