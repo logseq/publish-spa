@@ -19,6 +19,7 @@
   "dependencies": {
     "@logseq/nbb-logseq": "^1.2.173",
     "fs-extra": "^9.1.0",
-    "mldoc": "^1.5.1"
+    "mldoc": "^1.5.1",
+    "better-sqlite3": "8.0.1"
   }
 }

@@ -4,6 +4,9 @@
             [logseq.publishing :as publishing]
             ["fs" :as fs]
             ["path" :as node-path]
+            [logseq.db.sqlite.db :as sqlite-db]
+            [logseq.db.sqlite.cli :as sqlite-cli]
+            [datascript.core :as d]
             [babashka.cli :as cli]
             [clojure.edn :as edn]))
 
@@ -39,6 +42,38 @@
         (println "Warning: Skipping :theme-mode since it is invalid. Must be 'light' or 'dark'.")
         "light"))))
 
+(defn- build-common-export-options
+  [options]
+  {:ui/theme (get-theme-mode (:theme-mode options))
+   :notification-fn (fn [msg]
+                      (if (= "error" (:type msg))
+                        (do (js/console.error (:payload msg))
+                            (js/process.exit 1))
+                        (js/console.log (:payload msg))))})
+
+(defn- publish-file-graph [static-dir graph-dir output-path options]
+  (let [repo-config (-> (node-path/join graph-dir "logseq" "config.edn") fs/readFileSync str edn/read-string)]
+    (publishing/export (get-db graph-dir)
+                       static-dir
+                       graph-dir
+                       output-path
+                       (merge (build-common-export-options options) {:repo-config repo-config}))))
+
+(defn- publish-db-graph [static-dir graph-dir output-path options]
+  (let [db-name (node-path/basename graph-dir)
+        _ (sqlite-db/open-db! (node-path/dirname graph-dir) db-name)
+        conn (sqlite-cli/read-graph db-name)
+        repo-config (-> (d/q '[:find ?content
+                               :where [?b :file/path "logseq/config.edn"] [?b :file/content ?content]]
+                             @conn)
+                        ffirst
+                        edn/read-string)]
+    (publishing/export @conn
+                       static-dir
+                       graph-dir
+                       output-path
+                       (merge (build-common-export-options options) {:repo-config repo-config :db-graph? true}))))
+
 (defn ^:api -main
   [& args]
   (let [options (cli/parse-opts args {:spec spec})
@@ -51,18 +86,9 @@
         ;; Offset relative paths for CI since it is run in a different dir
         (map #(if js/process.env.CI (node-path/resolve ".." %) %)
              [(:static-directory options) (:directory options) (first args)])
-        _ (validate-directories graph-dir static-dir)
-        repo-config (-> (node-path/join graph-dir "logseq" "config.edn") fs/readFileSync str edn/read-string)]
-    (publishing/export (get-db graph-dir)
-                       static-dir
-                       graph-dir
-                       output-path
-                       {:repo-config repo-config
-                        :ui/theme (get-theme-mode (:theme-mode options))
-                        :notification-fn (fn [msg]
-                                           (if (= "error" (:type msg))
-                                             (do (js/console.error (:payload msg))
-                                                 (js/process.exit 1))
-                                             (js/console.log (:payload msg))))})))
+        _ (validate-directories graph-dir static-dir)]
+    (if (sqlite-cli/db-graph-directory? graph-dir)
+      (publish-db-graph static-dir graph-dir output-path options)
+      (publish-file-graph static-dir graph-dir output-path options))))
 
 #js {:main -main}
