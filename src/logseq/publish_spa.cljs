@@ -24,8 +24,9 @@
                       :alias :s
                       :default "../logseq/static"}})
 
-(defn- validate-directories [graph-dir static-dir]
-  (when-not (fs/existsSync (node-path/join graph-dir "logseq" "config.edn"))
+(defn- validate-directories [graph-dir static-dir {:keys [graph-db?]}]
+  (when (and (not graph-db?)
+             (not (fs/existsSync (node-path/join graph-dir "logseq" "config.edn"))))
     (println (str "Error: Invalid graph directory '" graph-dir
                   "' as it has no logseq/config.edn."))
     (js/process.exit 1))
@@ -86,8 +87,9 @@
         ;; Offset relative paths for CI since it is run in a different dir
         (map #(if js/process.env.CI (node-path/resolve ".." %) %)
              [(:static-directory options) (:directory options) (first args)])
-        _ (validate-directories graph-dir static-dir)]
-    (if (sqlite-cli/db-graph-directory? graph-dir)
+        graph-db? (sqlite-cli/db-graph-directory? graph-dir)
+        _ (validate-directories graph-dir static-dir {:graph-db? graph-db?})]
+    (if graph-db?
       (publish-db-graph static-dir graph-dir output-path options)
       (publish-file-graph static-dir graph-dir output-path options))))
 
