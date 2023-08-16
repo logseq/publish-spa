@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [main]
+    # branches: [main]
     paths-ignore:
       - '*.md'
 permissions:
@@ -14,9 +14,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build graph's SPA
-        uses: logseq/publish-spa@main
+        uses: logseq/publish-spa@feat/db
         with:
-          graph-directory: test/publish-test-graph
+          graph-directory: test/publish-test-db-graph
           theme-mode: dark
 
       - name: add a nojekyll file # to make sure asset paths are correctly identified
