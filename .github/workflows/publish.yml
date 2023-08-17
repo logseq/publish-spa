@@ -18,6 +18,7 @@ jobs:
         with:
           graph-directory: test/publish-test-db-graph
           theme-mode: dark
+          version: 172ee0ae2455fc65a83a2771a1cbe86c73c059a2
 
       - name: add a nojekyll file # to make sure asset paths are correctly identified
         run: touch $GITHUB_WORKSPACE/www/.nojekyll
