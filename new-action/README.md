@@ -44,3 +44,5 @@ jobs:
 Since each Graph has its own subfolder, there is no basic index file for the site. Browsing directly into a subfolder will result in a 404 error. However, accessing newowner.github.io/LogSeq will work.
 
 To provide easy navigation, I have included an index.html file that can be placed in the root of newowner.github.io. This file dynamically lists all the subfolders as buttons for accessing the graphs.
+
+You need to replce <NewOwner/newowner.github.io> in fetch('https://api.github.com/repos/<NewOwner/newowner.github.io>/contents/') for this to work.
