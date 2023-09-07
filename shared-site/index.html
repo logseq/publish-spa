@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My LogSeq Graphs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    #subfolder-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 150px;
+      height: 150px;
+      background-color: #4CAF50;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+      margin: 10px;
+    }
+
+    .button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to My LogSeq Graphs</h1>
+  <div id="subfolder-list"></div>
+
+  <script>
+    // Fetch the subfolder list dynamically
+    fetch('https://api.github.com/repos/LoveSkylark/loveskylark.github.io/contents/')
+      .then(response => response.json())
+      .then(data => {
+        const subfolderList = document.getElementById('subfolder-list');
+        data.forEach(item => {
+          if (item.type === 'dir') {
+            const link = document.createElement('a');
+            link.href = item.name;
+            link.textContent = item.name;
+            link.classList.add('button');
+            subfolderList.appendChild(link);
+          }
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching subfolder list:', error);
+      });
+  </script>
+</body>
+</html>
