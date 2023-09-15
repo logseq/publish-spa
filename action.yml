@@ -35,6 +35,8 @@ runs:
       with:
         repository: logseq/publish-spa
         path: .logseq-publish-spa
+        # TODO: Remove when merging
+        ref: feat/db
 
     - name: Set up Clojure
       uses: DeLaGuardo/setup-clojure@master
