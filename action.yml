@@ -17,6 +17,10 @@ inputs:
     description: "Theme mode of frontend. Can be 'dark' or 'light'"
     required: false
     default: 'light'
+  accent-color:
+    description: "Accent color of frontend. 10+ colors available."
+    required: false
+    default: 'blue'
 
 runs:
   using: "composite"
@@ -86,5 +90,5 @@ runs:
       shell: bash
 
     - name: Export graph to directory
-      run: cd .logseq-publish-spa && node publish_spa.mjs ${{ inputs.output-directory }} --static-directory .logseq-logseq/static --directory ${{ inputs.graph-directory }} --theme-mode ${{ inputs.theme-mode }}
+      run: cd .logseq-publish-spa && node publish_spa.mjs ${{ inputs.output-directory }} --static-directory .logseq-logseq/static --directory ${{ inputs.graph-directory }} --theme-mode ${{ inputs.theme-mode }} --accent-color ${{ inputs.accent-color }}
       shell: bash

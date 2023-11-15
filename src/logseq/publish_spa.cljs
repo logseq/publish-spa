@@ -43,9 +43,22 @@
         (println "Warning: Skipping :theme-mode since it is invalid. Must be 'light' or 'dark'.")
         "light"))))
 
+(def valid-colors
+  "From frontend.colors/color-list"
+  [:tomato :red :crimson :pink :plum :purple :violet :indigo :blue :cyan :teal :green :grass :orange :brown])
+
+(defn- get-accent-color [color*]
+  (let [color (keyword (or color* "blue"))]
+    (if (contains? (set valid-colors) color)
+      color
+      (do
+        (println "Warning: Skipping :accent-color since it is invalid.")
+        :blue))))
+
 (defn- build-common-export-options
   [options]
   {:ui/theme (get-theme-mode (:theme-mode options))
+   :ui/radix-color (get-accent-color (:accent-color options))
    :notification-fn (fn [msg]
                       (if (= "error" (:type msg))
                         (do (js/console.error (:payload msg))
