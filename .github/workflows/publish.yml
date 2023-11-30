@@ -18,8 +18,9 @@ jobs:
         with:
           graph-directory: test/publish-test-graph
           theme-mode: dark
+          accent-color: cyan
 
-      - name: add a nojekyll file # to make sure asset paths are correctly identified
+      - name: Add a nojekyll file # to make sure asset paths are correctly identified
         run: touch $GITHUB_WORKSPACE/www/.nojekyll
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4

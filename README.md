@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: logseq/publish-spa@v0.2.0
-      - name: add a nojekyll file # to make sure asset paths are correctly identified
+      - name: Add a nojekyll file # to make sure asset paths are correctly identified
         run: touch $GITHUB_WORKSPACE/www/.nojekyll
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
@@ -76,6 +76,10 @@ action with 0.9.2.
 ##### `theme-mode`
 
 Optional: Theme mode for frontend. Can be "dark" or "light". Defaults to "light".
+
+##### `accent-color`
+
+Optional: Accent color for frontend. Can be one of "tomato", "red", "crimson", "pink", "plum", "purple", "violet", "indigo", "blue", "cyan", "teal", "green", "grass", "orange", "brown". Defaults to "blue".
 
 ### CLI
 
