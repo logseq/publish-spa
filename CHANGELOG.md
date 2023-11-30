@@ -1,3 +1,7 @@
+## 0.3.0
+* Add accent-color action option
+* Bump to 0.10.0 version as default
+
 ## 0.2.0
 * Add theme-mode action option
 * Minor change: custom.js is included in published graphs like custom.css is
