@@ -39,7 +39,7 @@
         (println "Warning: Skipping :theme-mode since it is invalid. Must be 'light' or 'dark'.")
         "light"))))
 
-(def valid-colors
+(def ^:private valid-colors
   "From frontend.colors/color-list"
   [:tomato :red :crimson :pink :plum :purple :violet :indigo :blue :cyan :teal :green :grass :orange :brown])
 
