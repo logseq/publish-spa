@@ -115,8 +115,13 @@ Export public pages and publish assets to out successfully 🎉
 ## Development
 
 This github action use [nbb-logseq](https://github.com/logseq/nbb-logseq) and
-[nbb libraries](https://github.com/logseq/logseq/tree/master) to build up a
+[nbb compatible libraries](https://github.com/logseq/logseq/tree/master/deps) to build up a
 Logseq database and then generate html for the publishing app.
+
+When viewing a published graph directory, it's highly recommended to use a local http server as multiple features are known to not work (e.g. assets and slides) when viewed as a static file. For example, to view the published graph `out` from the above example:
+```sh
+$ python3 -m http.server 8080 -d out
+```
 
 ## LICENSE
 See LICENSE.md
