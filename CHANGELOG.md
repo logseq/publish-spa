@@ -1,6 +1,7 @@
 ## 0.3.0
 * Add accent-color action option
 * Bump to 0.10.0 version as default
+* Fix: slides don't work on published sites that aren't under '/'
 
 ## 0.2.0
 * Add theme-mode action option

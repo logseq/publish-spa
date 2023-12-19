@@ -68,7 +68,7 @@ This action has the following inputs:
 ##### `version`
 
 **Required:** Specifies the version of Logseq to build the frontend. This can be
-a git tag (version) or a specific git SHA. Defaults to `0.9.2`.
+a git tag (version) or a specific git SHA. Defaults to `0.10.0`.
 
 Note: A version before 0.9.2 is not supported as Logseq started supporting this
 action with 0.9.2.
