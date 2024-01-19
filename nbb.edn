@@ -1,23 +1,23 @@
 {:deps
  {logseq/graph-parser
   {:git/url "https://github.com/logseq/logseq"
-   :git/sha "8a846f6f81b7fcfd4c7e5ab381bd20b3f60ac522"
+   :git/sha "dfbbd9e5eb0c9ff3967b0f5a994549d5376b25a9"
    :deps/root "deps/graph-parser"}
   #_{:local/root "../logseq/deps/graph-parser"}
   logseq/publishing
   {:git/url "https://github.com/logseq/logseq"
-   :git/sha "8a846f6f81b7fcfd4c7e5ab381bd20b3f60ac522"
+   :git/sha "dfbbd9e5eb0c9ff3967b0f5a994549d5376b25a9"
    :deps/root "deps/publishing"}
   #_{:local/root "../logseq/deps/publishing"}
   ;; TODO: Remove workaround for error: 'Unable to compare versions for logseq/db'
   logseq/db
   {:git/url "https://github.com/logseq/logseq"
-   :git/sha "8a846f6f81b7fcfd4c7e5ab381bd20b3f60ac522"
+   :git/sha "dfbbd9e5eb0c9ff3967b0f5a994549d5376b25a9"
    :deps/root "deps/db"}
   #_{:local/root "../logseq/deps/db"}
   ;; TODO: Remove workaround for error: 'Unable to compare versions for logseq/common'
   logseq/common
   {:git/url "https://github.com/logseq/logseq"
-   :git/sha "8a846f6f81b7fcfd4c7e5ab381bd20b3f60ac522"
+   :git/sha "dfbbd9e5eb0c9ff3967b0f5a994549d5376b25a9"
    :deps/root "deps/common"}
   #_{:local/root "../logseq/deps/db"}}}
