@@ -89,8 +89,12 @@ To use this as a CLI locally, first install
 
 ```sh
 $ git clone https://github.com/logseq/publish-spa
+# If you have yarn 1.X:
 $ cd publish-spa && yarn install
 $ yarn global add $PWD
+
+# Otherwise use npm:
+$ cd publish-spa && npm i -g
 ```
 
 This CLI depends on Logseq being checked out locally in order to build the
