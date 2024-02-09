@@ -68,7 +68,7 @@ This action has the following inputs:
 ##### `version`
 
 **Required:** Specifies the version of Logseq to build the frontend. This can be
-a git tag (version) or a specific git SHA. Defaults to `0.10.0`.
+a git tag (version) or a specific git SHA. Defaults to `0.10.6`.
 
 Note: A version before 0.9.2 is not supported as Logseq started supporting this
 action with 0.9.2.
@@ -104,7 +104,7 @@ to do it once (takes some time):
 ```sh
 $ git clone https://github.com/logseq/logseq && cd logseq
 # Switch to a stable version
-$ git checkout 0.9.2
+$ git checkout 0.10.6
 # Install deps and build static directory
 $ yarn install --frozen-lockfile && yarn gulp:build && clojure -M:cljs release publishing
 ```
