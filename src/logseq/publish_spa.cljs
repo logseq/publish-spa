@@ -41,7 +41,7 @@
 
 (def ^:private valid-colors
   "From frontend.colors/color-list"
-  [:tomato :red :crimson :pink :plum :purple :violet :indigo :blue :cyan :teal :green :grass :orange :brown])
+  [:tomato :red :crimson :pink :plum :purple :violet :indigo :blue :cyan :teal :green :grass :orange])
 
 (defn- get-accent-color [color*]
   (let [color (keyword (or color* "blue"))]
