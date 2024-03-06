@@ -1,18 +1,28 @@
 (ns logseq.publish-spa
   "Exports SPA publishing app"
-  (:require [logseq.graph-parser.cli :as gp-cli]
-            [logseq.publishing :as publishing]
-            ["fs" :as fs]
+  (:require ["fs" :as fs]
             ["path" :as node-path]
             [babashka.cli :as cli]
-            [clojure.edn :as edn]))
+            [clojure.edn :as edn]
+            [clojure.string]
+            [logseq.graph-parser.cli :as gp-cli]
+            [logseq.publishing :as publishing]))
+
+(def ^:private valid-colors
+  "From frontend.colors/color-list"
+  [:tomato :red :crimson :pink :plum :purple :violet :indigo :blue :cyan :teal :green :grass :orange])
 
 (defn- get-db [graph-dir]
   (let [{:keys [conn]} (gp-cli/parse-graph graph-dir {:verbose false})] @conn))
 
 (def ^:private spec
   "Options spec"
-  {:directory {:desc "Graph directory to export"
+  {:accent-color {:desc
+                  (str  "Accent color for frontend. Can be one of " (clojure.string/join  ", " (map name valid-colors)) ". Defaults to \"blue\".")
+                  :default "blue"}
+   :theme-mode {:desc "Theme mode for frontend. Can be \"dark\" or \"light\". Defaults to \"light\"."
+                :default "light"}
+   :directory {:desc "Graph directory to export"
                :alias :d
                :default "."}
    :help {:alias :h
@@ -38,10 +48,6 @@
       (do
         (println "Warning: Skipping :theme-mode since it is invalid. Must be 'light' or 'dark'.")
         "light"))))
-
-(def ^:private valid-colors
-  "From frontend.colors/color-list"
-  [:tomato :red :crimson :pink :plum :purple :violet :indigo :blue :cyan :teal :green :grass :orange])
 
 (defn- get-accent-color [color*]
   (let [color (keyword (or color* "blue"))]
