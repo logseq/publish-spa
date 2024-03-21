@@ -85,6 +85,7 @@
                        static-dir
                        graph-dir
                        output-path
-                       (merge (build-common-export-options options) {:repo-config repo-config}))))
+                       (merge (build-common-export-options options) {:repo-config repo-config
+                                                                     :html-options (:html-options repo-config)}))))
 
 #js {:main -main}
