@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  logseq-publish-ci:
+    # image: logseq-publish-ci
+    build:
+      context: .
+    environment:
+      PUB_THEME: light
+      # PUB_ACCENT_COLOR: blue
+      # PUB_GRAPH_DIR: /graph
+      # PUB_OUT_DIR: /out
+    volumes:
+      - ./graph:/graph:ro
+      - ./out:/out

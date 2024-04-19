@@ -1,0 +1,60 @@
+ARG BB_VERSION=1.2.174
+ARG CLOJURE_VERSION=temurin-11-tools-deps-1.11.1.1182-alpine
+
+FROM babashka/babashka:${BB_VERSION}-alpine AS BB
+FROM clojure:${CLOJURE_VERSION}
+
+ARG NODE_URL=https://unofficial-builds.nodejs.org/download/release/v18.20.2/node-v18.20.2-linux-x64-musl.tar.gz
+ARG LOGSEQ_PUBSPA_VERSION=0.3.1
+ARG LOGSEQ_VERSION=0.10.6
+
+WORKDIR /opt
+
+# Install dependencies
+RUN apk --no-cache --update --upgrade add curl ca-certificates tar gpg \
+    libstdc++ build-base cairo-dev pango-dev \
+    jpeg-dev giflib-dev librsvg-dev \
+    python3 py3-pip && \
+    curl -Ls https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.28-r0/glibc-2.28-r0.apk > /tmp/glibc-2.28-r0.apk && \
+    apk add --allow-untrusted --force-overwrite /tmp/glibc-2.28-r0.apk && rm /tmp/glibc-2.28-r0.apk
+
+# Install babashka
+COPY --from=BB /opt/babashka-metabom.jar /opt/babashka-metabom.jar
+COPY --from=BB /bin/bb /bin/bb
+
+# install NodeJS & yarn
+RUN mkdir -p /opt/nodejs && \
+    wget ${NODE_URL} && \
+    tar -axvf *.tar.gz --directory /opt/nodejs --strip-components=1 && \
+    rm *.tar.gz && \
+    ln -s /opt/nodejs/bin/* /usr/local/bin/ && \
+    /usr/local/bin/npm install -g yarn --force && \
+    ln -s /opt/nodejs/bin/yarn /usr/local/bin/yarn
+
+# Initialize logseq-publish-spa
+RUN mkdir -p /opt/logseq-publish-spa && \
+    wget https://github.com/logseq/publish-spa/archive/refs/tags/v${LOGSEQ_PUBSPA_VERSION}.tar.gz && \
+    tar -axvf *.tar.gz --directory /opt/logseq-publish-spa --strip-components=1 && \
+    rm *.tar.gz && \
+    cd /opt/logseq-publish-spa && yarn install --frozen-lockfile
+
+# Initialize logseq
+RUN mkdir -p /opt/logseq-logseq && \
+    wget https://github.com/logseq/logseq/archive/refs/tags/${LOGSEQ_VERSION}.tar.gz && \
+    tar -axvf *.tar.gz --directory /opt/logseq-logseq --strip-components=1 && \
+    rm *.tar.gz && \
+    cd /opt/logseq-logseq && yarn install --frozen-lockfile && \
+    yarn gulp:build && clojure -M:cljs release publishing
+
+# Fetching nbb deps
+RUN cd /opt/logseq-publish-spa && \
+    yarn nbb-logseq -e ':fetching-deps'
+
+# Default Environments
+ENV PUB_OUT_DIR=/out
+ENV PUB_GRAPH_DIR=/graph
+
+# Entrypoint
+COPY entrypoint.sh .
+RUN chmod +x entrypoint.sh
+ENTRYPOINT ["/opt/entrypoint.sh"]

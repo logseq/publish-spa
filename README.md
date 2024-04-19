@@ -116,6 +116,33 @@ Parsing 306 files...
 Export public pages and publish assets to out successfully 🎉
 ```
 
+### Docker
+
+Note: The image consume \~7GB after the build (even with the alpine image).
+
+**Build manually:**
+```sh
+$ git clone https://github.com/logseq/publish-spa
+$ cd publish-spa/docker
+$ docker build -t logseq-publish-ci -f Dockerfile .
+# Run the image
+$ docker run -v ./graph:/graph:ro -v ./out:/out -e PUB_THEME=light -it logseq-publish-ci
+```
+
+Several environment variables are provided:
+
+- `PUB_THEME`: `light` or `dark`.
+- `PUB_ACCENT_COLOR`: Accent color for frontend.
+- `PUB_GRAPH_DIR`: Graph directory **in container**, defaults to `/graph`.
+- `PUB_OUT_DIR`: Output directory **in container**, defaults to `/out`.
+
+**Use docker compose:**
+```sh
+$ git clone https://github.com/logseq/publish-spa
+$ cd publish-spa/docker
+$ docker compose up
+```
+
 ## Development
 
 This github action use [nbb-logseq](https://github.com/logseq/nbb-logseq) and
