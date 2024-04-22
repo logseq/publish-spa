@@ -131,6 +131,7 @@ $ python3 -m http.server 8080 -d out
 See LICENSE.md
 
 ## Additional Links
-* https://github.com/pengx17/logseq-publish - Thanks to @pengx17 for his great work with this. :heart: This is currently the most popular action for publishing Logseq graphs. If you're happy using it, feel free to continue using it. `publish-spa` has more flexibility with versions of Logseq that can be used and may acquire more functionality than it since it hooks into the publishing process at a lower level.
+* https://github.com/pengx17/logseq-publish - Used to be the most popular action for publishing Logseq graphs. Now archived. Thanks to @pengx17 for his great work with this. :heart:
+* https://github.com/L-Trump/logseq-publish-docker - Docker image of this repository
 * https://github.com/logseq/graph-validator - Github action that this one is modeled after
 * https://github.com/logseq/docs - Logseq graph that uses this action
