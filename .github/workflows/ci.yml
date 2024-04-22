@@ -22,7 +22,7 @@ jobs:
         uses: DeLaGuardo/setup-clojure@master
         with:
           cli: 1.11.1.1237
-          bb: 1.3.189
+          bb: 1.3.190
 
       - name: Run clj-kondo lint
         run: clojure -M:clj-kondo --lint src
