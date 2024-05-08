@@ -132,6 +132,7 @@ See LICENSE.md
 
 ## Additional Links
 * https://github.com/pengx17/logseq-publish - Used to be the most popular action for publishing Logseq graphs. Now archived. Thanks to @pengx17 for his great work with this. :heart:
-* https://github.com/L-Trump/logseq-publish-docker - Docker image of this repository
+* https://github.com/L-Trump/logseq-publish-docker - Docker image of this repository. This
+  repository [can be used with GitLab](https://github.com/logseq/publish-spa/issues/18#issuecomment-2100932405).
 * https://github.com/logseq/graph-validator - Github action that this one is modeled after
 * https://github.com/logseq/docs - Logseq graph that uses this action
