@@ -27,7 +27,7 @@ runs:
   steps:
     # First, build logseq's static/ and publishing assets
     - name: Checkout logseq
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: logseq/logseq
         path: .logseq-logseq
@@ -35,7 +35,7 @@ runs:
 
     ## Placed here since node step requires it
     - name: Checkout action
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: logseq/publish-spa
         path: .logseq-publish-spa
