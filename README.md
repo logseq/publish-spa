@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Publish Logseq graph
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: logseq/publish-spa@v0.3.0
       - name: Add a nojekyll file # to make sure asset paths are correctly identified
         run: touch $GITHUB_WORKSPACE/www/.nojekyll
