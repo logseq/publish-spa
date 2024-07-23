@@ -54,7 +54,7 @@ runs:
         cache-dependency-path: .logseq-publish-spa/yarn.lock
 
     - name: Logseq static cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       id: logseq-static-all
       with:
         path: .logseq-logseq/static
@@ -72,7 +72,7 @@ runs:
       shell: bash
 
     - name: Nbb cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       id: nbb-deps
       with:
         path: |
