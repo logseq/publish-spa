@@ -39,5 +39,5 @@ jobs:
       - name: Check outdated dependencies
         uses: liquidz/antq-action@main
         with:
-          excludes: 'borkdude/carve clojure/brew-install'
+          excludes: 'borkdude/carve clojure/brew-install logseq/publish-spa'
 
