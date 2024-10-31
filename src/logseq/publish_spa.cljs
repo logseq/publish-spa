@@ -4,11 +4,11 @@
             [logseq.publishing :as publishing]
             ["fs" :as fs]
             ["path" :as node-path]
-            [logseq.db.sqlite.db :as sqlite-db]
             [logseq.db.sqlite.cli :as sqlite-cli]
             [datascript.core :as d]
             [babashka.cli :as cli]
-            [clojure.edn :as edn]))
+            [clojure.edn :as edn]
+            [logseq.db.sqlite.util :as sqlite-util]))
 
 (defn- get-db [graph-dir]
   (let [{:keys [conn]} (gp-cli/parse-graph graph-dir {:verbose false})] @conn))
@@ -18,6 +18,8 @@
   {:directory {:desc "Graph directory to export"
                :alias :d
                :default "."}
+   :dev {:coerce :boolean
+         :desc "Dev mode"}
    :help {:alias :h
           :desc "Print help"}
    :static-directory {:desc "Logseq's static directory"
@@ -59,6 +61,7 @@
   [options]
   {:ui/theme (get-theme-mode (:theme-mode options))
    :ui/radix-color (get-accent-color (:accent-color options))
+   :dev? (boolean (:dev options))
    :notification-fn (fn [msg]
                       (if (= "error" (:type msg))
                         (do (js/console.error (:payload msg))
@@ -71,11 +74,13 @@
                        static-dir
                        graph-dir
                        output-path
-                       (merge (build-common-export-options options) {:repo-config repo-config}))))
+                       (merge (build-common-export-options options)
+                              {:repo (node-path/basename graph-dir)
+                               :repo-config repo-config}))))
 
 (defn- publish-db-graph [static-dir graph-dir output-path options]
   (let [db-name (node-path/basename graph-dir)
-        conn (sqlite-db/open-db! (node-path/dirname graph-dir) db-name)
+        conn (sqlite-cli/open-db! (node-path/dirname graph-dir) db-name)
         repo-config (-> (d/q '[:find ?content
                                :where [?b :file/path "logseq/config.edn"] [?b :file/content ?content]]
                              @conn)
@@ -85,7 +90,10 @@
                        static-dir
                        graph-dir
                        output-path
-                       (merge (build-common-export-options options) {:repo-config repo-config :db-graph? true}))))
+                       (merge (build-common-export-options options)
+                              {:repo (str sqlite-util/db-version-prefix db-name)
+                               :repo-config repo-config
+                               :db-graph? true}))))
 
 (defn ^:api -main
   [& args]
@@ -96,8 +104,11 @@
             (js/process.exit 1))
         _ (when js/process.env.CI (println "Options:" (pr-str options)))
         [static-dir graph-dir output-path]
-        ;; Offset relative paths for CI since it is run in a different dir
-        (map #(if js/process.env.CI (node-path/resolve ".." %) %)
+        (map #(if js/process.env.CI
+                ;; Offset relative paths for CI since it is run in a different dir
+                (node-path/resolve ".." %)
+                ;; Resolve static dir so that copied js assets don't have incorrect relative paths
+                (node-path/resolve "." %))
              [(:static-directory options) (:directory options) (first args)])
         graph-db? (sqlite-cli/db-graph-directory? graph-dir)
         _ (validate-directories graph-dir static-dir {:graph-db? graph-db?})]
