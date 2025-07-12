@@ -2,17 +2,11 @@
 # yarn lockfile v1
 
 
-"@logseq/nbb-logseq@logseq/nbb-logseq#feat-db-v16":
-  version "1.2.173-feat-db-v16"
-  resolved "https://codeload.github.com/logseq/nbb-logseq/tar.gz/5c52c2869da240283db96cd13366e45e532c5d29"
+"@logseq/nbb-logseq@logseq/nbb-logseq#feat-db-v24":
+  version "1.2.173-feat-db-v24"
+  resolved "https://codeload.github.com/logseq/nbb-logseq/tar.gz/3d5b78b0382c7253bf9874c1f38586dd338434f4"
   dependencies:
-    import-meta-resolve "^2.1.0"
-
-"@logseq/nbb-logseq@logseq/nbb-logseq#feat-db-v8":
-  version "1.2.173-feat-db-v8"
-  resolved "https://codeload.github.com/logseq/nbb-logseq/tar.gz/5fa1d8c83ea9c65c56cdda8bd00f3d92f529acf5"
-  dependencies:
-    import-meta-resolve "^2.1.0"
+    import-meta-resolve "^4.1.0"
 
 ansi-regex@^2.0.0:
   version "2.1.1"
@@ -34,10 +28,10 @@ base64-js@^1.3.1:
   resolved "https://registry.yarnpkg.com/base64-js/-/base64-js-1.5.1.tgz#1b1b440160a5bf7ad40b650f095963481903930a"
   integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
 
-better-sqlite3@9.3.0:
-  version "9.3.0"
-  resolved "https://registry.yarnpkg.com/better-sqlite3/-/better-sqlite3-9.3.0.tgz#2a8aaad65fa0210a4df5e8a0bcbc9156f6138d56"
-  integrity sha512-ww73jVpQhRRdS9uMr761ixlkl4bWoXi8hMQlBGhoN6vPNlUHpIsNmw4pKN6kjknlt/wopdvXHvLk1W75BI+n0Q==
+better-sqlite3@11.10.0:
+  version "11.10.0"
+  resolved "https://registry.yarnpkg.com/better-sqlite3/-/better-sqlite3-11.10.0.tgz#2b1b14c5acd75a43fd84d12cc291ea98cef57d98"
+  integrity sha512-EwhOpyXiOEL/lKzHz9AW1msWFNzGc/z+LzeB3/jnFJpxu+th2yqvzsSWas1v9jgs9+xiXJcD5A8CJxAG2TaghQ==
   dependencies:
     bindings "^1.5.0"
     prebuild-install "^7.1.1"
@@ -202,10 +196,10 @@ ieee754@^1.1.13:
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.2.1.tgz#8eb7a10a63fff25d15a57b001586d177d1b0d352"
   integrity sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==
 
-import-meta-resolve@^2.1.0:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/import-meta-resolve/-/import-meta-resolve-2.2.2.tgz#75237301e72d1f0fbd74dbc6cca9324b164c2cc9"
-  integrity sha512-f8KcQ1D80V7RnqVm+/lirO9zkOxjGxhaTC1IPrBGd3MEfNgmNG67tSUO9gTi2F3Blr2Az6g1vocaxzkVnWl9MA==
+import-meta-resolve@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/import-meta-resolve/-/import-meta-resolve-4.1.0.tgz#f9db8bead9fafa61adb811db77a2bf22c5399706"
+  integrity sha512-I6fiaX09Xivtk+THaMfAwnA3MVA5Big1WHF1Dfx9hFuvNIWpXnorlkzhcQf6ehrqQiiZECRt1poOAkPmer3ruw==
 
 inherits@^2.0.3, inherits@^2.0.4:
   version "2.0.4"
@@ -311,10 +305,10 @@ mkdirp-classic@^0.5.2, mkdirp-classic@^0.5.3:
   resolved "https://registry.yarnpkg.com/mkdirp-classic/-/mkdirp-classic-0.5.3.tgz#fa10c9115cc6d8865be221ba47ee9bed78601113"
   integrity sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==
 
-mldoc@^1.5.1:
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/mldoc/-/mldoc-1.5.3.tgz#98d5bb276ac6908d72e1c58c27916e488ef9d395"
-  integrity sha512-hkI3PtjBHhbZqTr1U5/A8TIrIzg9DGZzCMLrfzePAdM+97GNeZijmPqUQXWEAyEQsDPnkipMoQZsBXxhnwzfJA==
+mldoc@^1.5.9:
+  version "1.5.9"
+  resolved "https://registry.yarnpkg.com/mldoc/-/mldoc-1.5.9.tgz#43d740351c64285f0f4988ac9497922d54ae66fc"
+  integrity sha512-87FQ7hseS87tsk+VdpIigpu8LH+GwmbbFgpxgFwvnbH5oOjmIrc47laH4Dyggzqiy8/vMjDHkl7vsId0eXhCDQ==
   dependencies:
     yargs "^12.0.2"
 

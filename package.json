@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/logseq/publish-spa#readme",
   "dependencies": {
-    "@logseq/nbb-logseq": "logseq/nbb-logseq#feat-db-v16",
-    "better-sqlite3": "9.3.0",
+    "@logseq/nbb-logseq": "logseq/nbb-logseq#feat-db-v24",
+    "better-sqlite3": "11.10.0",
     "fs-extra": "^9.1.0",
-    "mldoc": "^1.5.1"
+    "mldoc": "^1.5.9"
   }
 }
