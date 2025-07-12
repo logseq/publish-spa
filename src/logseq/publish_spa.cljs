@@ -4,7 +4,7 @@
             [logseq.publishing :as publishing]
             ["fs" :as fs]
             ["path" :as node-path]
-            [logseq.db.sqlite.cli :as sqlite-cli]
+            [logseq.db.common.sqlite-cli :as sqlite-cli]
             [datascript.core :as d]
             [babashka.cli :as cli]
             [clojure.edn :as edn]
