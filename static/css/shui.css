@@ -205,7 +205,8 @@ html[data-theme=dark] {
     }
 
     .cp__header {
-      > .r > div:not(.ui__dropdown-trigger) a.button, button.button {
+      > .r > div:not(.ui__dropdown-trigger) a.button, button.button,
+      .ui__button.as-ghost {
         @apply opacity-60 hover:opacity-90;
       }
     }
@@ -227,6 +228,10 @@ html[data-theme=dark] {
 
 div[data-radix-popper-content-wrapper] {
   @apply !z-[999];
+
+  &:has(> .repos-list) {
+    @apply !z-[var(--ls-z-index-level-5)];
+  }
 }
 
 .ui__dialog-overlay {
@@ -241,7 +246,7 @@ div[data-radix-popper-content-wrapper] {
 }
 
 .ui__dialog-content {
-  @apply outline-none;
+  @apply outline-none m-4;
 
   &[data-auto-width] {
     @apply max-w-[90vw] w-max sm:max-w-[960px];
@@ -283,11 +288,11 @@ div[data-radix-popper-content-wrapper] {
   @apply overflow-y-auto;
 
   &[data-side=top] {
-    max-height: calc(var(--radix-dropdown-menu-content-available-height) - 40px);
+    max-height: calc(var(--radix-dropdown-menu-content-available-height) - 20px);
   }
 
   &[data-side=bottom] {
-    max-height: calc(var(--radix-dropdown-menu-content-available-height) - 20px);
+    max-height: calc(var(--radix-dropdown-menu-content-available-height) - 10px);
   }
 
   &.text-popover-foreground {
@@ -388,7 +393,7 @@ div[data-radix-popper-content-wrapper] {
   }
 
   .del-date-btn {
-    @apply absolute right-[13px] top-[21px] px-1 opacity-70 hover:opacity-100
+    @apply absolute right-[4px] top-[17px] px-1 opacity-70 hover:opacity-100
     active:opacity-80 hover:text-red-rx-09 rounded-md !h-6 !w-6;
   }
 
