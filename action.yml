@@ -12,7 +12,7 @@ inputs:
   version:
     description: "Frontend version of Logseq - git tag or SHA"
     required: true
-    default: '0.9.8'
+    default: '65640ed8857199d89268295863cd556f5d90ea0b'
   theme-mode:
     description: "Theme mode of frontend. Can be 'dark' or 'light'"
     required: false
