@@ -4,6 +4,8 @@ This is a [github action](https://github.com/features/actions) to publish a
 Logseq graph as a [publishing](https://docs.logseq.com/#/page/publishing) Single
 Page Application (SPA). This action can also be run as a [CLI](#cli).
 
+**NOTE**: This repository currently only supports file graphs. While there is [preliminary work](https://github.com/logseq/publish-spa/pull/43) to support DB graphs, this has been put on indefinite hold.
+
 ## Usage
 
 ### Github Action
